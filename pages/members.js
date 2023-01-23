@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { getMembers } from '../api/memberData';
 import { useAuth } from '../utils/context/authContext';
@@ -13,7 +14,7 @@ export default function ShowMembers() {
 
   useEffect(() => {
     getAllMembers();
-  });
+  }, []);
 
   return (
     <div>
