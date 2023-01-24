@@ -18,9 +18,12 @@ export default function ShowMembers() {
 
   return (
     <div>
-      {members.map((member) => (
-        <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllMembers} />
-      ))}
+      <h1> Team Members </h1>
+      <div className="d-flex flex-wrap">
+        {members.map((member) => (
+          <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllMembers} />
+        ))}
+      </div>
     </div>
   );
 }

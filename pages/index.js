@@ -1,4 +1,5 @@
 import { Button } from 'react-bootstrap';
+import Link from 'next/link';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -15,12 +16,16 @@ function Home() {
       }}
     >
       <h1>Hello {user.displayName}! </h1>
-      <Button variant="danger" type="button" size="lg" className="copy-btn">
-        View Members
-      </Button>
-      <Button variant="danger" type="button" size="lg" className="copy-btn">
-        Add a Member
-      </Button>
+      <Link href="/members" passHref>
+        <Button variant="danger" type="button" size="lg" className="copy-btn">
+          View Members
+        </Button>
+      </Link>
+      <Link href="/member/new" passHref>
+        <Button variant="danger" type="button" size="lg" className="copy-btn">
+          Add a Member
+        </Button>
+      </Link>
     </div>
   );
 }

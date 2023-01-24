@@ -11,10 +11,12 @@ function MemberCard({ memberObj, onUpdate }) {
     }
   };
 
+  console.warn(memberObj);
+
   return (
     <div>
       <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={memberObj.image} />
+        <Card.Img variant="top" src={memberObj.image} style={{ height: '400px' }} />
         <Card.Body>
           <Card.Title>{memberObj.name}</Card.Title>
           <Card.Text>{memberObj.role}</Card.Text>
