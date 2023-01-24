@@ -1,5 +1,6 @@
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
+import Head from 'next/head';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -15,6 +16,9 @@ function Home() {
         margin: '0 auto',
       }}
     >
+      <Head>
+        <title>Home Page</title>
+      </Head>
       <h1>Hello {user.displayName}! </h1>
       <Link href="/members" passHref>
         <Button variant="danger" type="button" size="lg" className="copy-btn">

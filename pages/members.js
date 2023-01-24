@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { getMembers } from '../api/memberData';
 import { useAuth } from '../utils/context/authContext';
 import MemberCard from '../components/MemberCard';
@@ -18,6 +19,9 @@ export default function ShowMembers() {
 
   return (
     <div>
+      <Head>
+        <title>Team Members</title>
+      </Head>
       <h1> Team Members </h1>
       <div className="d-flex flex-wrap">
         {members.map((member) => (
