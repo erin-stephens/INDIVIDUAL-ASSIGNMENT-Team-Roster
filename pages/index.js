@@ -21,12 +21,12 @@ function Home() {
       </Head>
       <h1>Hello {user.displayName}! </h1>
       <Link href="/members" passHref>
-        <Button variant="danger" type="button" size="lg" className="copy-btn">
+        <Button variant="warning" type="button" size="lg" className="copy-btn">
           View Members
         </Button>
       </Link>
       <Link href="/member/new" passHref>
-        <Button variant="danger" type="button" size="lg" className="copy-btn">
+        <Button variant="warning" type="button" size="lg" className="copy-btn">
           Add a Member
         </Button>
       </Link>

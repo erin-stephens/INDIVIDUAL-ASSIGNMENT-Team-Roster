@@ -16,14 +16,14 @@ function MemberCard({ memberObj, onUpdate }) {
   return (
     <div>
       <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={memberObj.image} style={{ height: '400px' }} />
+        <Card.Img variant="top" src={memberObj.image} style={{ height: '300px' }} />
         <Card.Body>
           <Card.Title>{memberObj.name}</Card.Title>
           <Card.Text>{memberObj.role}</Card.Text>
           <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
-            <Button variant="primary">Edit</Button>
+            <Button variant="warning">Edit</Button>
           </Link>
-          <Button variant="primary" onClick={deleteThisMember}>Delete</Button>
+          <Button variant="warning" onClick={deleteThisMember}>Delete</Button>
         </Card.Body>
       </Card>
     </div>
