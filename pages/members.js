@@ -5,11 +5,17 @@ import { getMembers } from '../api/memberData';
 import { useAuth } from '../utils/context/authContext';
 import MemberCard from '../components/MemberCard';
 
+const getFilteredMembers = (query, members) => {
+  if (!query) {
+    return members;
+  }
+  return members.filter((member) => member.name.includes(query));
+};
+
 export default function ShowMembers() {
   const [members, setMembers] = useState([]);
   const { user } = useAuth();
-  const [searchInput, setSearchInput] = useState('');
-  const [filteredResults, setFilteredResults] = useState([]);
+  const [query, setQuery] = useState('');
 
   const getAllMembers = () => {
     getMembers(user.uid).then(setMembers);
@@ -19,19 +25,11 @@ export default function ShowMembers() {
     getAllMembers();
   }, []);
 
-  const searchMembers = (searchValue) => {
-    setSearchInput(searchValue);
-    if (searchInput !== '') {
-      const filteredMembers = members.filter((item) => Object.values(item).includes(searchInput));
-      setFilteredResults(filteredMembers);
-    } else {
-      setFilteredResults(members);
-    }
-  };
+  const filteredItems = getFilteredMembers(query, members);
 
   const handleChange = (e) => {
     e.preventDefault();
-    setSearchInput(e.target.value);
+    setQuery(e.target.value);
   };
 
   return (
@@ -44,16 +42,10 @@ export default function ShowMembers() {
         type="text"
         placeholder="Search Members"
         onChange={handleChange}
-        value={searchInput}
       />
-      <div className="d-flex flex-wrap">{searchInput.length > 1 ? (
-        filteredResults.map((member) => (
-          <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={searchMembers} />
-        ))
-      ) : (
-        members.map((member) => (
-          <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllMembers} />
-        )))}
+      <div className="d-flex flex-wrap">{filteredItems.map((member) => (
+        <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllMembers} />
+      ))}
       </div>
     </div>
   );
