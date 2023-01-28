@@ -16,7 +16,7 @@ function MemberCard({ memberObj, onUpdate }) {
 
   useEffect(() => {
     getSingleTeam(memberObj.team_id).then(setTeams);
-  });
+  }, [memberObj.team_id]);
 
   console.warn(memberObj);
 
