@@ -42,6 +42,7 @@ export default function ShowMembers() {
         type="text"
         placeholder="Search Members"
         onChange={handleChange}
+        className="m-2"
       />
       <div className="d-flex flex-wrap">{filteredItems.map((member) => (
         <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllMembers} />

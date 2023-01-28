@@ -22,8 +22,16 @@ function MemberCard({ memberObj, onUpdate }) {
 
   return (
     <div>
-      <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={memberObj.image} style={{ height: '300px' }} />
+      <Card
+        style={{
+          width: '18rem',
+          backgroundColor: 'black',
+          color: 'white',
+          borderColor: 'goldenrod',
+        }}
+        className="m-2"
+      >
+        <Card.Img variant="top" src={memberObj.image} style={{ height: '250px', width: '250px' }} className="m-3" />
         <Card.Body>
           <Card.Title>{memberObj.name}</Card.Title>
           <Card.Text>{memberObj.role}</Card.Text>

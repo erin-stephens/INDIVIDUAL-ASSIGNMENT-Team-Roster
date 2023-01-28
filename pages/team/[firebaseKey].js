@@ -21,7 +21,7 @@ export default function ViewTeam() {
   }, [firebaseKey]);
 
   return (
-    <div className="mt-5 d-flex flex-wrap">
+    <div>
       <div className="d-flex flex-column">
         <img src={teamDetails.image} alt={teamDetails.name} style={{ width: '300px' }} />
       </div>

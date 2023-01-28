@@ -21,22 +21,22 @@ function Home() {
       </Head>
       <h1>Hello {user.displayName}! </h1>
       <Link href="/teams" passHref>
-        <Button variant="warning" type="button" size="lg" className="copy-btn">
+        <Button variant="warning" type="button" size="lg" className="copy-btn m-2">
           View Teams
         </Button>
       </Link>
       <Link href="/team/new" passHref>
-        <Button variant="warning" type="button" size="lg" className="copy-btn">
+        <Button variant="warning" type="button" size="lg" className="copy-btn m-2">
           Add a Team
         </Button>
       </Link>
       <Link href="/members" passHref>
-        <Button variant="warning" type="button" size="lg" className="copy-btn">
+        <Button variant="warning" type="button" size="lg" className="copy-btn m-2">
           View Members
         </Button>
       </Link>
       <Link href="/member/new" passHref>
-        <Button variant="warning" type="button" size="lg" className="copy-btn">
+        <Button variant="warning" type="button" size="lg" className="copy-btn m-2">
           Add a Member
         </Button>
       </Link>
