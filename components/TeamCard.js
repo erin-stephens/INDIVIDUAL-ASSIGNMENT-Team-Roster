@@ -12,8 +12,16 @@ export default function TeamCard({ teamObj, onUpdate }) {
   };
   return (
     <div>
-      <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={teamObj.image} style={{ height: '300px' }} />
+      <Card
+        style={{
+          width: '18rem',
+          backgroundColor: 'black',
+          color: 'white',
+          borderColor: 'goldenrod',
+        }}
+        className="m-2"
+      >
+        <Card.Img variant="top" src={teamObj.image} style={{ height: '250px', width: '250px' }} className="m-3" />
         <Card.Body>
           <Card.Title>{teamObj.name}</Card.Title>
           <Card.Text>{teamObj.cheer}</Card.Text>
@@ -21,7 +29,7 @@ export default function TeamCard({ teamObj, onUpdate }) {
             <Button variant="warning">Edit</Button>
           </Link>
           <Link href={`/team/${teamObj.firebaseKey}`} passHref>
-            <Button variant="warning" className="m-2">VIEW</Button>
+            <Button variant="warning" className="m-2">View</Button>
           </Link>
           <Button variant="warning" onClick={deleteThisTeam}>Delete</Button>
         </Card.Body>
