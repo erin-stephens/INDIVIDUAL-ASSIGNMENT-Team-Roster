@@ -20,6 +20,16 @@ function Home() {
         <title>Home Page</title>
       </Head>
       <h1>Hello {user.displayName}! </h1>
+      <Link href="/teams" passHref>
+        <Button variant="warning" type="button" size="lg" className="copy-btn">
+          View Teams
+        </Button>
+      </Link>
+      <Link href="/team/new" passHref>
+        <Button variant="warning" type="button" size="lg" className="copy-btn">
+          Add a Team
+        </Button>
+      </Link>
       <Link href="/members" passHref>
         <Button variant="warning" type="button" size="lg" className="copy-btn">
           View Members

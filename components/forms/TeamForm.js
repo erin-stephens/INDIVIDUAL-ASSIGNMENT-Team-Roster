@@ -5,18 +5,17 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createMember, updateMember } from '../../api/memberData';
-import { getTeams } from '../../api/teamData';
+import { getTeams, updateTeam, createTeam } from '../../api/teamData';
 
 const initialState = {
   name: '',
   image: '',
-  role: '',
+  cheer: '',
 };
 
-export default function MemberForm({ obj }) {
+export default function TeamForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-  const [teams, setTeams] = useState([]);
+  const [, setTeams] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -36,15 +35,15 @@ export default function MemberForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateMember(formInput)
-        .then(() => router.push('/members'));
+      updateTeam(formInput)
+        .then(() => router.push('/teams'));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      createMember(payload).then(({ name }) => {
+      createTeam(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
-        updateMember(patchPayload).then(() => {
-          router.push('/members');
+        updateTeam(patchPayload).then(() => {
+          router.push('/teams');
         });
       });
     }
@@ -55,10 +54,10 @@ export default function MemberForm({ obj }) {
       <Form onSubmit={handleSubmit}>
         <h2>{obj.firebaseKey ? 'Update' : 'Create'} A Member</h2>
 
-        <FloatingLabel controlId="floatingInput1" label="Member Name" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="Team Name" className="mb-3">
           <Form.Control
             type="text"
-            placeholder="Enter full name"
+            placeholder="Enter team name"
             name="name"
             value={formInput.name}
             onChange={handleChange}
@@ -66,7 +65,7 @@ export default function MemberForm({ obj }) {
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput2" label="Member Image" className="mb-3">
+        <FloatingLabel controlId="floatingInput2" label="Team Image" className="mb-3">
           <Form.Control
             type="url"
             placeholder="Enter an image url"
@@ -77,56 +76,31 @@ export default function MemberForm({ obj }) {
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput3" label="Member Role" className="mb-3">
+        <FloatingLabel controlId="floatingInput3" label="Team Cheer" className="mb-3">
           <Form.Control
             type="text"
-            placeholder="Enter role"
-            name="role"
-            value={formInput.role}
+            placeholder="Enter a team cheer"
+            name="cheer"
+            value={formInput.cheer}
             onChange={handleChange}
             required
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingSelect" label="Team">
-          <Form.Select
-            aria-label="Team"
-            name="team_id"
-            onChange={handleChange}
-            className="mb-3"
-            value={formInput.team_id}
-            required
-          >
-            <option value="">Select a Team</option>
-            {
-            teams.map((team) => (
-              <option
-                key={team.firebaseKey}
-                value={team.firebaseKey}
-              >
-                {team.name}
-              </option>
-            ))
-          }
-          </Form.Select>
-        </FloatingLabel>
-
-        <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Member</Button>
+        <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Team</Button>
       </Form>
     </>
   );
 }
 
-MemberForm.propTypes = {
+TeamForm.propTypes = {
   obj: PropTypes.shape({
     name: PropTypes.string,
     image: PropTypes.string,
-    role: PropTypes.string,
-    team_id: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
 };
 
-MemberForm.defaultProps = {
+TeamForm.defaultProps = {
   obj: initialState,
 };

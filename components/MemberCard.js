@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { deleteMember } from '../api/memberData';
+import { getSingleTeam } from '../api/teamData';
 
 function MemberCard({ memberObj, onUpdate }) {
+  const [teams, setTeams] = useState({});
+
   const deleteThisMember = () => {
     if (window.confirm(`Delete ${memberObj.name}?`)) {
       deleteMember(memberObj.firebaseKey).then(() => onUpdate());
     }
   };
+
+  useEffect(() => {
+    getSingleTeam(memberObj.team_id).then(setTeams);
+  }, [memberObj.team_id]);
 
   console.warn(memberObj);
 
@@ -20,6 +27,7 @@ function MemberCard({ memberObj, onUpdate }) {
         <Card.Body>
           <Card.Title>{memberObj.name}</Card.Title>
           <Card.Text>{memberObj.role}</Card.Text>
+          <Card.Text>{teams.name}</Card.Text>
           <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
             <Button variant="warning">Edit</Button>
           </Link>
@@ -35,6 +43,7 @@ MemberCard.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     role: PropTypes.string,
+    team_id: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,

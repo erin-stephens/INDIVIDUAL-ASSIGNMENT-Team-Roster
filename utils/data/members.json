@@ -4,27 +4,31 @@
     "firebaseKey": "-NMK45x2YzXuvNatjSAb",
     "name": "Bradney Neville",
     "role": "Kindergarten",
-    "uid": "x0OdXVpf90dGLcjQO3IFGufGgeI3"
+    "uid": "x0OdXVpf90dGLcjQO3IFGufGgeI3",
+    "team_id": "-NMsLj6Nmzh-pBCQTYl7"
   },
   "-NMK45x4kiKpb3b4Cu0X": {
     "image": "http://dummyimage.com/162x100.png/5fa2dd/ffffff",
     "firebaseKey": "-NMK45x4kiKpb3b4Cu0X",
     "name": "Erhard Bishopp",
     "role": "Counselor",
-    "uid": "x0OdXVpf90dGLcjQO3IFGufGgeI3"
+    "uid": "x0OdXVpf90dGLcjQO3IFGufGgeI3",
+    "team_id": "-NMsLj6Nmzh-pBCQTYl7"
   },
   "-NMK45x5XFJ2VkeVrakU": {
     "image": "http://dummyimage.com/239x100.png/dddddd/000000",
     "firebaseKey": "-NMK45x5XFJ2VkeVrakU",
     "name": "Nicoline Ortsmann",
     "role": "Third Grade",
-    "uid": "x0OdXVpf90dGLcjQO3IFGufGgeI3"
+    "uid": "x0OdXVpf90dGLcjQO3IFGufGgeI3",
+    "team_id": "-NMsLj6PKs2hBYr4B23L"
   },
   "-NMK45x7mmAJaKSXv_Yo": {
     "image": "http://dummyimage.com/209x100.png/dddddd/000000",
     "firebaseKey": "-NMK45x7mmAJaKSXv_Yo",
     "name": "Boris Pol",
     "role": "PE",
-    "uid": "x0OdXVpf90dGLcjQO3IFGufGgeI3"
+    "uid": "x0OdXVpf90dGLcjQO3IFGufGgeI3",
+    "team_id": "-NMsLj6SiYoeZYApLxsL"
   }
 }
