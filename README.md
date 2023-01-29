@@ -1,80 +1,58 @@
-# React/Next.js Template
+# Team Roster  [![Netlify Status](https://api.netlify.com/api/v1/badges/6231cdfc-5aa9-4caa-96c3-399e3aa7440a/deploy-status)](https://app.netlify.com/sites/team-roster-applees/deploys)
 
-[See Live Demo of this Template](https://drt-next-js-template.netlify.app/)
+My product can be used to keep track of staff/ students. You can add them and place them on teams (classes). This can help keep track of which class students are in or which staff belong to each grade level if you chose to use it for just staff. 
 
-## [Team Roster Instructions](./INSTRUCTIONS.md)
+[View App](https://team-roster-applees.netlify.app/)
 
-## Topics
-- [Get Started](#get-started)
-- [Starting the Project](#starting-the-project)
-- [Using axios](#using-axios)
-- [Deploying on Netlify](#deploying-on-netlify)
-___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+## About the User <!-- This is a scaled down user persona -->
+- The ideal user for this application is an admin at a school.
+- Admin can use this app to place students into teams or classes. 
+- The problem this app solves for them is it allows them to stay organized by seeing where each student has been placed, and also being able to see all members who have been added to the app.
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+## Features <!-- List your app features using bullets! Do NOT use a paragraph. No one will read that! -->
+- When a new member is added an object should be created and that object should be pushed into an array of members that then shows on the view members page.
+- Members can be placed on teams.
+- Team view can be accessed from the view teams page.
+- Users can search for members on the view members page.
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+## Video Walkthrough of Team Roster <!-- A loom link is sufficient -->
+(to come)
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+## Relevant Links <!-- Link to all the things that are required outside of the ones that have their own section -->
+- [Check out the deployed site](https://team-roster-applees.netlify.app/)
+- [Wireframes](https://www.figma.com/file/ad4A8xRc0r0gD4kEU4hhru/Team-Roster?node-id=0%3A1&t=sN7Bh6iqm3ncUDbo-1)
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://user-images.githubusercontent.com/29741570/177615077-9b6a75bc-0260-4d29-bb88-bd95a3140687.png">
-
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
-
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
-
-### Using Axios
-> For every file you will need to make an XHR request in, you will need to require Axios
-```js
-import axios from 'axios';
-
-const examplePromise = () => {
-  axios.get('http://localhost:3001/example')
-    .then((data) => {
-      console.warn(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-});
+## Code Snippet <!-- OPTIONAL, but doesn't hurt -->
 ```
+const initialState = {
+  name: '',
+  image: '',
+  role: '',
+};
 
-### Deploying on Netlify
-Netlify will automatically detect your project and prepopulate the settings, but should something go wrong and it does not, here are the commands:
+export default function MemberForm({ obj }) {
+  const [formInput, setFormInput] = useState(initialState);
+  const [teams, setTeams] = useState([]);
+  const router = useRouter();
+  const { user } = useAuth();
 
-- Build Command: `npm run build`
-- Publish directory: `.next`
+  useEffect(() => {
+    getTeams(user.uid).then(setTeams);
+    if (obj.firebaseKey) setFormInput(obj);
+  }, [obj, user]);
 
-#### Additional Steps to Take on Netlify
-- Add Environmental Variables
-    - Any Enviromental variables you are using in your `.env` file should be added to Netlify. 
-        - Go to Site settings > Build & deploy > Environment > Environment variables and the keys and values there.
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+  ```
 
-- Update Firebase URL Settings
-    - In Firebase under Authentication select sign in methods, scroll to Authorized domains. Add your Netlify URL.
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
+## Project Screenshots <!-- These can be inside of your project. Look at the repos from class and see how the images are included in the readme -->
+<img width="148" alt="homepage" src="/screenshots/homepage.png"><img width="148" alt="homepage" src="/screenshots/addmember.png"><img width="148" alt="homepage" src="/screenshots/membersview.png"><img width="148" alt="homepage" src="/screenshots/addteam.png"><img width="148" alt="homepage" src="/screenshots/teamview.png">
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributors
+- [Erin Stephens](https://github.com/erin-stephens)
+
